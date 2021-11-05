@@ -6,7 +6,9 @@
   >
     <header>
       <h1>
-        <a href="https://www.vulica-brasil.by/" title="Vulica Brasil website" target="_blank">ivb | ibб</a>
+        <a href="https://www.vulica-brasil.by/" title="Vulica Brasil website" target="_blank">
+          <img src="@/assets/logo-vb.png"/>
+        </a>
       </h1>
     </header>
     <section>
@@ -28,32 +30,24 @@
           @zoom-start="onZoomStart"
           @zoom-end="onZoomEnd"
         >
+          <div class="button left"> &lt; </div>
           <div class="action-bar">
-            <left-icon
-              class="btn left"
-              :class="{ disabled: !flipbook.canFlipLeft }"
-              @click="flipbook.flipLeft"
-            />
             <span class="page-num">
               PAGE {{ flipbook.page }} OF {{ flipbook.numPages }}
             </span>
-            <right-icon
-              class="btn right"
-              :class="{ disabled: !flipbook.canFlipRight }"
-              @click="flipbook.flipRight"
-            />
           </div>
+          <div class="button right"> &gt; </div>
         </Flipbook>
       </div>
     </section>
     <footer>
-      <a href="https://www.instagram.com/vulicabrasil.galeria/">GALLERY</a>
-      <a href="https://www.youtube.com/channel/UCkFtwnKHUWkJZtudfdHDutQ/featured">YOUTUBE</a>
-      <a href="https://www.facebook.com/vulicabrasil">FACEBOOK</a>
-      <a href="https://www.vulica-brasil.by/">WEB</a>
-      <a href="https://vimeo.com/vulicabrasil">VIMEO</a>
-      <a href="https://www.mixcloud.com/VulicaBrasil/">MIXCLOUD</a>
-      <a href="https://www.linkedin.com/company/vulicabrasil">LINKEDIN</a>
+      <a href="https://www.instagram.com/vulicabrasil.galeria/" title="Instagram" target="_blank">GALLERY</a>
+      <a href="https://www.youtube.com/channel/UCkFtwnKHUWkJZtudfdHDutQ/featured" title="YouTube" target="_blank">YOUTUBE</a>
+      <a href="https://www.facebook.com/vulicabrasil" title="Facebook" target="_blank">FACEBOOK</a>
+      <a href="https://www.vulica-brasil.by/" title="Website" target="_blank">WEB</a>
+      <a href="https://vimeo.com/vulicabrasil" title="Vimeo" target="_blank">VIMEO</a>
+      <a href="https://www.mixcloud.com/VulicaBrasil/" title="Mixcloud" target="_blank">MIXCLOUD</a>
+      <a href="https://www.linkedin.com/company/vulicabrasil" title="LinkedIn" target="_blank">LINKEDIN</a>
     </footer>
   </div>
 </template>
@@ -608,12 +602,6 @@ header {
   background: linear-gradient(#ffffff, rgba(255, 255, 255, 0));;
 }
 
-header h1 {
-  user-select: none;
-  font-size: 2.5em;
-  color: #000000;
-}
-
 header h1 a {
   text-decoration: none;
 }
@@ -626,6 +614,11 @@ header h1 a:active {
 header h1 a:visited {
   text-decoration: none;
   color: #000000;
+}
+
+header h1 a img {
+  height: 1.5em;
+  width: auto;
 }
 
 section {
@@ -688,30 +681,6 @@ a {
   align-items: center;
 }
 
-.action-bar .btn {
-  font-size: 30px;
-  color: #999;
-}
-
-.action-bar .btn svg {
-  bottom: 0;
-}
-
-.has-mouse .action-bar .btn:hover {
-  color: #ccc;
-  filter: drop-shadow(1px 1px 5px #000);
-  cursor: pointer;
-}
-
-.action-bar .btn:active {
-  filter: none !important;
-}
-
-.action-bar .btn.disabled {
-  color: #666;
-  pointer-events: none;
-}
-
 .action-bar .page-num {
   user-select: none;
   font-size: 11px;
@@ -725,6 +694,31 @@ a {
   justify-content: flex-end;
   align-content: center;
   align-items: center;
+}
+
+.flipbook .button {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  font-size: 4em;
+
+  position: absolute;
+  top: calc(50% - 32px);
+
+  width: 64px;
+  height: 64px;
+}
+
+.flipbook .button.left {
+  left: 3em;
+}
+
+.flipbook .button.right {
+  right: 3em;
 }
 
 .flipbook .viewport {
@@ -775,6 +769,10 @@ a {
     margin-top: 100px;
   }
 
+  .flipbook .button {
+    display: none;
+  }
+
   .flipbook .action-bar {
     padding: 0;
   }
@@ -814,6 +812,10 @@ a {
     padding: 0;
 
     background-color: #ffffff;
+  }
+
+  .flipbook .button {
+    display: none;
   }
 
   .flipbook .action-bar {
